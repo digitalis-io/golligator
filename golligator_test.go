@@ -29,5 +29,5 @@ func TestSend(t *testing.T) {
 	config := &Config{Port: 8081, ServerUrl: "http://localhost:8081"}
 	g := NewGolligator(config)
 	message := createAddFrameworkEvent("1", "user", "framework")
-	g.Send("AddFramework", message)
+	g.Send(&Event{Type: "AddFramework", Message: message})
 }

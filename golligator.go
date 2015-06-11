@@ -1,8 +1,6 @@
 // Package golligator provides server and client for mesos protobuf events
 package golligator
 
-import "github.com/gogo/protobuf/proto"
-
 type Config struct {
 	Port      int    // port to listen
 	ServerUrl string // server url to send events
@@ -30,6 +28,6 @@ func (g *Golligator) ListenAndServe() chan *Event {
 }
 
 // Send event back to the server
-func (g *Golligator) Send(eventType string, message proto.Message) {
-	g.client.sendEvent(&Event{Type: eventType, Message: message})
+func (g *Golligator) Send(event *Event) {
+	g.client.sendEvent(event)
 }
