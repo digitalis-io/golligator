@@ -1,0 +1,82 @@
+syntax = "proto2";
+
+import "mesos.proto";
+
+package golligator;
+
+message SlaveResources {
+  required SlaveID slaveId = 1;
+  repeated Resource resources = 2;
+}
+
+message FrameworkResources {
+  required FrameworkID frameworkId = 1;
+  repeated Resource resources = 2;
+}
+
+message AddFramework {
+  required FrameworkID frameworkId = 1;
+  required FrameworkInfo frameworkInfo = 2;
+  repeated SlaveResources slaveResources = 3;
+}
+
+message RemoveFramework {
+  required FrameworkID frameworkId = 1;
+}
+
+message ActivateFramework {
+  required FrameworkID frameworkId = 1;
+}
+
+message DeactivateFramework {
+  required FrameworkID frameworkId = 1;
+}
+
+message AddSlave {
+  required SlaveID slaveId = 1;
+  required SlaveInfo slaveInfo = 2;
+  repeated Resource total = 3;
+  repeated FrameworkResources frameworkResources = 4;
+}
+
+message RemoveSlave {
+  required SlaveID slaveId = 1;
+}
+
+message UpdateSlave {
+  required SlaveID slaveId = 1;
+  repeated Resource resources = 2;
+}
+
+message ActivateSlave {
+  required SlaveID slaveId = 1;
+}
+
+message DeactivateSlave {
+  required SlaveID slaveId = 1;
+}
+
+message UpdateWhitelist {
+  repeated string whitelist = 1;
+}
+
+message RequestResources {
+  required FrameworkID frameworkId = 1;
+  repeated Request requests = 2;
+}
+
+message UpdateAllocation {
+  required FrameworkID frameworkId = 1;
+  required SlaveID slaveId = 2;
+  repeated Offer.Operation operations = 3;
+}
+
+message RecoverResources {
+  required FrameworkID frameworkId = 1;
+  required SlaveID slaveId = 2;
+  optional Filters filters = 3;
+}
+
+message ReviveOffers {
+  required FrameworkID frameworkId = 1;
+}
