@@ -1,6 +1,7 @@
 package golligator
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
@@ -21,6 +22,16 @@ func TestParseEvent(t *testing.T) {
 		t.Fail()
 	}
 	if addFramework.GetFrameworkInfo().GetName() != name {
+		t.Fail()
+	}
+}
+
+func TestEventFactory(t *testing.T) {
+	event, err := eventFactory("AddFramework")
+	if err != nil {
+		t.Fail()
+	}
+	if reflect.TypeOf(event) != reflect.TypeOf(&AddFramework{}) {
 		t.Fail()
 	}
 }

@@ -16,18 +16,14 @@ func TestNewGolligator(t *testing.T) {
 	}
 }
 
-func TestListen(t *testing.T) {
+func TestListenAndSend(t *testing.T) {
 	config := &Config{Port: 8081, ServerUrl: "http://localhost:8081"}
 	g := NewGolligator(config)
 	events := g.Listen()
-	if events == nil {
-		t.Fail()
-	}
-}
-
-func TestSend(t *testing.T) {
-	config := &Config{Port: 8081, ServerUrl: "http://localhost:8081"}
-	g := NewGolligator(config)
 	message := createAddFrameworkEvent("1", "user", "framework")
 	g.Send(&Event{Type: "AddFramework", Message: message})
+	event := <-events
+	if event.Message.(*AddFramework).GetFrameworkId().GetValue() != "1" {
+		t.Fail()
+	}
 }
