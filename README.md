@@ -11,7 +11,7 @@ import "github.com/stealthly/golligator"
 
 func main() {
   // Create config first, specify port to serve and url of remote server to respond
-  config := &golligator.Config{Port: 8081, ServerUrl: "http://localhost:8081"}
+  config := &golligator.Config{Port: 8081, ServerUrl: "http://remote.server.com"}
   // Create Golligator from config
   g := golligator.NewGolligator(config)
   // Start server and get channel with incoming events
