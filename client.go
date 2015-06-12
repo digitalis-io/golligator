@@ -28,8 +28,8 @@ func (c *client) sendRequest(eventType string, data []byte) {
 	req, _ := http.NewRequest("POST", c.serverUrl, &buffer)
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	client := &http.Client{}
-	res, _ := client.Do(req)
-	log.Println(res.StatusCode)
+	resp, _ := client.Do(req)
+	resp.Body.Close()
 }
 
 func (c *client) sendEvent(event *Event) {
