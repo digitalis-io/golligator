@@ -16,10 +16,10 @@ func TestNewGolligator(t *testing.T) {
 	}
 }
 
-func TestListenAndServe(t *testing.T) {
+func TestListen(t *testing.T) {
 	config := &Config{Port: 8081, ServerUrl: "http://localhost:8081"}
 	g := NewGolligator(config)
-	events := g.ListenAndServe()
+	events := g.Listen()
 	if events == nil {
 		t.Fail()
 	}

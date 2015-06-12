@@ -15,7 +15,7 @@ func main() {
   // Create Golligator from config
   g := golligator.NewGolligator(config)
   // Start server and get channel with incoming events
-  events := g.ListenAndServe()
+  events := g.Listen()
   for {
     event := <-events // Get event from channel
     // ...

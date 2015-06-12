@@ -21,8 +21,8 @@ func NewGolligator(config *Config) *Golligator {
 	return g
 }
 
-// ListenAndServe creates new listener and returns channel of incoming events
-func (g *Golligator) ListenAndServe() chan *Event {
+// Listen creates new http listener and returns channel of incoming events
+func (g *Golligator) Listen() chan *Event {
 	g.server = newServer(g.config.Port, g.inputEvents)
 	return g.inputEvents
 }
