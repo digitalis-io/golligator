@@ -26,3 +26,53 @@ func main() {
 }
 ```
 
+## Reference
+
+#### type Config
+
+```go
+type Config struct {
+	Port      int    // port to listen
+	ServerUrl string // server url to send events
+}
+```
+
+
+#### type Event
+
+```go
+type Event struct {
+	Type    string
+	Message proto.Message
+}
+```
+
+
+#### type Golligator
+
+```go
+type Golligator struct {
+}
+```
+
+
+#### func  NewGolligator
+
+```go
+func NewGolligator(config *Config) *Golligator
+```
+NewGolligator creates new server with specified config
+
+#### func (*Golligator) Listen
+
+```go
+func (g *Golligator) Listen() chan *Event
+```
+Listen creates new http listener and returns channel of incoming events
+
+#### func (*Golligator) Send
+
+```go
+func (g *Golligator) Send(event *Event)
+```
+Send event back to the server
